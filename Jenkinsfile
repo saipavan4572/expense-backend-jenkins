@@ -15,31 +15,42 @@ pipeline {
         // account_id = "315069654700"
     }
     stages {
-        stage('read the version'){
+
+        stage('test'){
             steps{
-                script{
-                    def packageJson = readJSON file: 'package.json'
-                    appVersion = packageJson.version
-                    echo "application version: $appVersion"
-                }
-            }
-        }
-        stage('Install Dependencies') {
-            steps {
                 sh """
-                echo 'Hi, this is test'
-                ls -ltr
+                echo 'this is sample testing stage'
+
                 """
             }
         }
-        stage('Build'){
-            steps{
-                sh """
-                zip -q -r backend-${appVersion}.zip * -x Jenkinsfile -x backend-${appVersion}.zip
-                ls -ltr
-                """
-            }
-        }
+
+
+        // stage('read the version'){
+        //     steps{
+        //         script{
+        //             def packageJson = readJSON file: 'package.json'
+        //             appVersion = packageJson.version
+        //             echo "application version: $appVersion"
+        //         }
+        //     }
+        // }
+        // stage('Install Dependencies') {
+        //     steps {
+        //         sh """
+        //         echo 'Hi, this is test'
+        //         ls -ltr
+        //         """
+        //     }
+        // }
+        // stage('Build'){
+        //     steps{
+        //         sh """
+        //         zip -q -r backend-${appVersion}.zip * -x Jenkinsfile -x backend-${appVersion}.zip
+        //         ls -ltr
+        //         """
+        //     }
+        // }
 
     }
 
