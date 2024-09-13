@@ -16,15 +16,15 @@ pipeline {
     }
     stages {
 
-        stage('test'){
-            steps{
-                sh """
-                echo 'this is sample testing stage'
-                ls -ltr
+        // stage('test'){
+        //     steps{
+        //         sh """
+        //         echo 'this is sample testing stage'
+        //         ls -ltr
 
-                """
-            }
-        }
+        //         """
+        //     }
+        // }
 
 
         // stage('read the version'){
@@ -36,14 +36,15 @@ pipeline {
         //         }
         //     }
         // }
-        // stage('Install Dependencies') {
-        //     steps {
-        //         sh """
-        //         echo 'Hi, this is test'
-        //         ls -ltr
-        //         """
-        //     }
-        // }
+        stage('Install Dependencies') {
+            steps {
+                sh """
+                echo 'Hi, this is test'
+                ls -ltr
+                npm install
+                """
+            }
+        }
         // stage('Build'){
         //     steps{
         //         sh """
