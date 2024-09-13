@@ -45,14 +45,17 @@ pipeline {
                 """
             }
         }
-        // stage('Build'){
-        //     steps{
-        //         sh """
-        //         zip -q -r backend-${appVersion}.zip * -x Jenkinsfile -x backend-${appVersion}.zip
-        //         ls -ltr
-        //         """
-        //     }
-        // }
+        stage('Build'){
+            steps{
+                sh """
+                zip -q -r backend-${appVersion}.zip * -x Jenkinsfile -x backend-${appVersion}.zip
+                ls -ltr
+                """
+            }
+        }
+        ////ex: zip -q -r backend-1.0.0.zip * -x Jenkinsfile -x backend-1.0.0.zip
+        // -q is used to not to show the unnecessary console logs while performing zip action/task
+        // -x is used to exclude that specific file from zip in that directory.
 
     }
 
