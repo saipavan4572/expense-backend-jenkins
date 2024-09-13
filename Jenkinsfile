@@ -40,8 +40,8 @@ pipeline {
             steps {
                 sh """
                 echo 'Hi, this is test'
-                ls -ltr
                 npm install
+                ls -ltr
                 """
             }
         }
