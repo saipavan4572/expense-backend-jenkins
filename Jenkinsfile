@@ -10,7 +10,7 @@ pipeline {
     }
     environment{
         def appVersion = '' //variable declaration
-        // nexusUrl = 'nexus.daws78s.online:8081'
+        nexusUrl = 'nexus.pspkdevops.online:8081'
         // region = "us-east-1"
         // account_id = "315069654700"
     }
@@ -56,6 +56,28 @@ pipeline {
         ////ex: zip -q -r backend-1.0.0.zip * -x Jenkinsfile -x backend-1.0.0.zip
         // -q is used to not to show the unnecessary console logs while performing zip action/task
         // -x is used to exclude that specific file from zip in that directory.
+
+        stage('Nexus Artifact Upload'){
+            steps{
+                script{
+                    nexusArtifactUploader(
+                        nexusVersion: 'nexus3',
+                        protocol: 'http',
+                        nexusUrl: "${nexusUrl}",
+                        groupId: 'com.expense',
+                        version: "${appVersion}",
+                        repository: "backend",
+                        credentialsId: 'nexus-auth',
+                        artifacts: [
+                            [artifactId: "backend" ,
+                            classifier: '',
+                            file: "backend-" + "${appVersion}" + '.zip',
+                            type: 'zip']
+                        ]
+                    )
+                }
+            }
+        }
 
     }
 
