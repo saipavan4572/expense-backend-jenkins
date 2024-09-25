@@ -87,6 +87,7 @@ pipeline {
          //       }
          //   } */
             steps{
+                echo 'Hi, this is triggering CD job stage'
                 script{
                     def params = [
                         string(name: 'appVersion', value: "${appVersion}")
