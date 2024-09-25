@@ -39,7 +39,7 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 sh """
-                echo 'Hi, this is test'
+                echo 'Hi, this is to install npm dependencies'
                 npm install
                 ls -ltr
                 """
@@ -54,30 +54,30 @@ pipeline {
             }
         }
         ////ex: zip -q -r backend-1.0.0.zip * -x Jenkinsfile -x backend-1.0.0.zip
-        // -q is used to not to show the unnecessary console logs while performing zip action/task
+        // -q (quiet)is used to not to show the unnecessary console logs while performing zip action/task
         // -x is used to exclude that specific file from zip in that directory.
 
-        // stage('Nexus Artifact Upload'){
-        //     steps{
-        //         script{
-        //             nexusArtifactUploader(
-        //                 nexusVersion: 'nexus3',
-        //                 protocol: 'http',
-        //                 nexusUrl: "${nexusUrl}",
-        //                 groupId: 'com.expense',
-        //                 version: "${appVersion}",
-        //                 repository: "backend",
-        //                 credentialsId: 'nexus-auth',
-        //                 artifacts: [
-        //                     [artifactId: "backend" ,
-        //                     classifier: '',
-        //                     file: "backend-" + "${appVersion}" + '.zip',
-        //                     type: 'zip']
-        //                 ]
-        //             )
-        //         }
-        //     }
-        // }
+        stage('Nexus Artifact Upload'){
+            steps{
+                script{
+                    nexusArtifactUploader(
+                        nexusVersion: 'nexus3',
+                        protocol: 'http',
+                        nexusUrl: "${nexusUrl}",
+                        groupId: 'com.expense',
+                        version: "${appVersion}",
+                        repository: "backend",
+                        credentialsId: 'nexus-auth',
+                        artifacts: [
+                            [artifactId: "backend" ,
+                            classifier: '',
+                            file: "backend-" + "${appVersion}" + '.zip',
+                            type: 'zip']
+                        ]
+                    )
+                }
+            }
+        }
 
         // stage('Deploy'){
         //  //   /* when{
