@@ -59,7 +59,7 @@ pipeline {
 
         stage('Nexus Artifact Upload'){
             steps{
-                echo 'Hi, this is Nexus Artifact Upload stage'
+                echo 'Hi, this is Nexus Artifact Uploading stage'
                 script{
                     nexusArtifactUploader(
                         nexusVersion: 'nexus3',
