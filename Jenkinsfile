@@ -80,22 +80,22 @@ pipeline {
             }
         }
 
-        // stage('Deploy'){
-        //  //   /* when{
-        //  //       expression{
-        //  //           params.deploy
-        //  //       }
-        //  //   } */
-        //     steps{
-        //         script{
-        //             def params = [
-        //                 string(name: 'appVersion', value: "${appVersion}")
-        //             ]
-        //             build job: 'expense-backend-deploy-jenkins', parameters: params, wait: false
-        //             // since the build job is in the same folder so we mentioned module name directly, if it is in different folder then we need to mention the folder path like: 'com/xyz/featurename'
-        //         }
-        //     }
-        // }
+        stage('Deploy'){
+         //   /* when{
+         //       expression{
+         //           params.deploy
+         //       }
+         //   } */
+            steps{
+                script{
+                    def params = [
+                        string(name: 'appVersion', value: "${appVersion}")
+                    ]
+                    build job: 'expense-backend-deploy-jenkins', parameters: params, wait: false
+                    // since the build job is in the same folder so we mentioned module name directly, if it is in different folder then we need to mention the folder path like: 'com/xyz/featurename'
+                }
+            }
+        }
 
     }
 
